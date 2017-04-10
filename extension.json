@@ -1,0 +1,19 @@
+{
+  "name": "crazy-ai",
+  "title": "Crazy AI",
+  "version": "0.0.1",
+  "description": "Show me your dreams...",
+  "platform": "1.0.*",
+  "screens": [
+    {
+      "name": "DayDream"
+    }
+  ],
+  "shortcuts": [
+    {
+      "title": "Dreams",
+      "name": "dreams",
+      "screen": "@.DayDream"
+    }
+  ]
+}
