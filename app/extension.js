@@ -2,9 +2,11 @@
 // You should not change it
 import pack from './package.json';
 import DayDream from './screens/DayDream';
+import Results from './screens/Results';
 
 export const screens = {
-  DayDream
+  DayDream,
+  Results
 };
 
 export function ext(resourceName) {
