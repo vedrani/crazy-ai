@@ -1,12 +1,8 @@
 import React, {
   Component
 } from 'react';
-
 import { connect } from 'react-redux';
-
 import { openInModal } from '@shoutem/core/navigation';
-import { ext } from '../extension';
-
 import {
   View,
   Screen,
@@ -16,31 +12,21 @@ import {
   TouchableOpacity,
   Button,
 } from '@shoutem/ui';
-
 import {
-  Text,
-  Dimensions,
   StyleSheet,
   NativeModules,
 } from 'react-native';
-
 import Camera from 'react-native-camera';
-
 import jpegJS from 'jpeg-js';
 import base64 from 'base-64';
 import base64Arraybuffer from 'base64-arraybuffer';
-
-
-//import NativeModules from 'NativeModules';
-
-//onst caffe = require('../caffe.js');
+import { ext } from '../extension';
 
 class DayDream extends Component {
   constructor(props) {
     super(props);
 
     this.takePicture = this.takePicture.bind(this);
-    this.clearResults = this.clearResults.bind(this);
     this.classifyFromWebcam = this.classifyFromWebcam.bind(this);
     this.classify = this.classify.bind(this);
     this.loadModel = this.loadModel.bind(this);
@@ -56,13 +42,6 @@ class DayDream extends Component {
     this.n = 5;
     this.format = d3.format('.2%');
 
-    // Let's hook up the webcam
-    /*Webcam.set({
-      width: width,
-      height: heightß
-    });
-    Webcam.attach('.camera');*/
-
     this.labels = null;
     global.d3.text('https://chaosmail.github.io/caffejs/data/ilsvrc12/synset_words.txt', data =>
       this.labels = data.split('\n').map(function(d) {
@@ -74,8 +53,6 @@ class DayDream extends Component {
     this.mean = [104.0, 116.0, 122.0];
 
     this.loadModel();
-
-    this.state = { results: null };
   }
 
   classifyFromWebcam(data) {
@@ -107,7 +84,6 @@ class DayDream extends Component {
       ];
     }
 
-    this.setState({results});
     const route = {
       screen: ext('Results'),
       props: {
@@ -137,8 +113,8 @@ class DayDream extends Component {
         const capturedUri = image.path;
         NativeModules.RNAssetResizeToBase64.assetToResizedBase64(
           capturedUri,
-          224,
-          224,
+          this.width,
+          this.height,
           (err, resizedData) => {
             console.log('is error resize', err);
 
@@ -159,15 +135,7 @@ class DayDream extends Component {
     }
   }
 
-  clearResults() {
-    this.setState({
-      results: null,
-    })
-  }
-
   render() {
-    const { results } = this.state;
-
     return (
       <Screen>
         <Camera
