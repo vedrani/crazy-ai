@@ -1,12 +1,12 @@
 // This file is managed by Shoutem CLI
 // You should not change it
 import pack from './package.json';
-import DayDream from './screens/DayDream';
-import Results from './screens/Results';
+import ClassifierScreen from './screens/ClassifierScreen';
+import ResultsScreen from './screens/ResultsScreen';
 
 export const screens = {
-  DayDream,
-  Results
+  ClassifierScreen,
+  ResultsScreen,
 };
 
 export function ext(resourceName) {

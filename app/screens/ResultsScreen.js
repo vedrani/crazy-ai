@@ -1,7 +1,4 @@
-import React, {
-  Component
-} from 'react';
-
+import React, { Component } from 'react';
 import {
   Screen,
   ListView,
@@ -9,7 +6,7 @@ import {
   Text,
 } from '@shoutem/ui';
 
-export default class Results extends Component {
+export default class ResultsScreen extends Component {
   constructor(props) {
     super(props);
 

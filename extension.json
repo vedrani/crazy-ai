@@ -2,21 +2,21 @@
   "name": "crazy-ai",
   "title": "Crazy AI",
   "version": "0.0.1",
-  "description": "Show me your dreams...",
+  "description": "Recognize it from image...",
   "platform": "1.0.*",
   "screens": [
     {
-      "name": "DayDream"
+      "name": "ClassifierScreen"
     },
     {
-      "name": "Results"
+      "name": "ResultsScreen"
     }
   ],
   "shortcuts": [
     {
-      "title": "Dreams",
-      "name": "dreams",
-      "screen": "@.DayDream"
+      "title": "Recognize",
+      "name": "recognize",
+      "screen": "@.ClassifierScreen"
     }
   ]
 }
