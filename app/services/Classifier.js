@@ -85,7 +85,7 @@ export default class Classifier {
   }
 
   resizeImage(imageUri) {
-    const promise = new Promise(function(resolve, reject) {
+    const promise = new Promise((resolve, reject) => (
       NativeModules.RNAssetResizeToBase64.assetToResizedBase64(
         imageUri,
         this.width,
@@ -106,8 +106,8 @@ export default class Classifier {
           var rawImage = jpegJS.decode(array, true);
           resolve(rawImage.data);
         }
-      );
-    });
+      )
+    ));
 
     return promise;
   }

@@ -12,12 +12,9 @@ import {
   TouchableOpacity,
   Button,
 } from '@shoutem/ui';
-import {
-  StyleSheet,
-} from 'react-native';
 import Camera from 'react-native-camera';
 import { ext } from '../extension';
-import { Classifier } from '../services/Classifier';
+import Classifier from '../services/Classifier';
 
 class ClassifierScreen extends Component {
   constructor(props) {
@@ -46,7 +43,8 @@ class ClassifierScreen extends Component {
   handleImageCaptured(image) {
     const { path } = image;
 
-    this.classifier.process(path).then(showResults);
+    this.classifier.process(path)
+      .then(this.showResults);
   }
 
   showResults(results) {
@@ -90,7 +88,7 @@ class ClassifierScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   camera: {
     flex: 1,
   },
@@ -105,14 +103,14 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   cameraButton: {
-    activeOpacity: 0.2,
     position: 'absolute',
     bottom: 30,
     left: 0,
     right: 0,
     alignItems: 'center',
+    activeOpacity: 0.2,
   },
-});
+};
 
 const mapDispatchToProps = {
   openInModal,
