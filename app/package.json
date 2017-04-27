@@ -6,7 +6,7 @@
     "base-64": "^0.1.0",
     "d3": "^4.7.3",
     "jpeg-js": "^0.2.0",
-    "react-native-asset-resize-to-base64": "git+https://github.com/vedrani/react-native-asset-resize-to-base64.git#e305a2b615571d0aac57bc4cbf9f6dc424a39178",
+    "react-native-asset-resize-to-base64": "git+https://github.com/vedrani/react-native-asset-resize-to-base64.git#3100bac21455054a9c44dcc2859aba30b350da4c",
     "react-native-camera": "0.4.1"
   },
   "rnpm": {
