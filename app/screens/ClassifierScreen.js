@@ -11,6 +11,7 @@ import {
   Image,
   TouchableOpacity,
   Button,
+  Spinner,
 } from '@shoutem/ui';
 import Camera from 'react-native-camera';
 import { ext } from '../extension';
@@ -26,25 +27,40 @@ class ClassifierScreen extends Component {
     this.renderCameraOverlay = this.renderCameraOverlay.bind(this);
 
     this.classifier = new Classifier();
+
+    this.state = {
+      inProgress: false,
+    };
   }
 
   handleCameraCaptureClick() {
-    console.log('Clicked');
     if (!this.camera) {
       return;
     }
 
+    this.setState({
+      inProgress: true,
+    });
+
+    // TODO: configure camera to save iamge to temp
     const options = {
       target: Camera.constants.CaptureTarget.temp,
     };
-    this.camera.capture().then(this.handleImageCaptured);
+    this.camera.capture()
+      .then(this.handleImageCaptured);
   }
 
   handleImageCaptured(image) {
     const { path } = image;
 
     this.classifier.process(path)
-      .then(this.showResults);
+      .then((results) => {
+        this.showResults(results);
+
+        this.setState({
+          inProgress: false,
+        });
+      });
   }
 
   showResults(results) {
@@ -58,6 +74,8 @@ class ClassifierScreen extends Component {
   }
 
   renderCameraOverlay() {
+    const { inProgress } = this.state;
+
     return (
       <Overlay styleName="fill-parent" style={styles.overlay}>
         <View styleName="fill-parent" style={styles.cameraBorder} />
@@ -65,10 +83,15 @@ class ClassifierScreen extends Component {
           onPress={this.handleCameraCaptureClick}
           style={styles.cameraButton}
         >
-          <Image
-            styleName="small"
-            source={require("../assets/brain-button.png")}
-          />
+          {!inProgress &&
+            <Image
+              styleName="small"
+              source={require("../assets/brain-button.png")}
+            />
+          }
+          {inProgress &&
+            <Spinner style={{width: 65, height: 65, size:'large', color:'white'}}/>
+          }
         </TouchableOpacity>
       </Overlay>
     )

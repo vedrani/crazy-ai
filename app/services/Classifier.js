@@ -54,8 +54,6 @@ export default class Classifier {
   }
 
   classify(imageData) {
-    console.log('Classify');
-
     const image = new ImgJS.Image();
     const input = image
       .set({
